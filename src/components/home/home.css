@@ -1,0 +1,13 @@
+.home-img {
+    width: inherit;
+    height: inherit;
+}
+
+.logo {
+    text-align: center;
+}
+
+.right-panel{
+    padding: 5em;
+    background: #f6f6f6;
+}
