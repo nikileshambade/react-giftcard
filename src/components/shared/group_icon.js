@@ -1,4 +1,4 @@
-import './shared.css';
+import './shared.scss';
 import React from 'react';
 import { AiFillTwitterCircle, AiFillFacebook, AiFillMail, AiOutlineWhatsApp } from 'react-icons/ai';
 import { BsMessenger } from 'react-icons/bs';

@@ -1,4 +1,4 @@
-import './shared.css';
+import './shared.scss';
 import React from 'react';
 
 const ViewTitle = (props) => {

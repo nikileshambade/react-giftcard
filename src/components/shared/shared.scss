@@ -1,0 +1,104 @@
+@import '../../styles/variables';
+
+#view-header{
+    color: #545454;
+    font-size: 24px;
+    text-transform: uppercase;
+    text-shadow: none;
+    padding-bottom: 5px;
+    border-bottom: solid 2px #d4d4d4;
+    font-weight: 300;
+}
+
+#view-title{
+    color: #545454;
+    font-size: 3em;
+    font-weight: 600;
+    font-family: fangsong;
+    line-height: normal;
+    margin-top: 1em;
+}
+
+/* Icons */
+.icon-cnt{
+    margin-right: 5em;
+    width: inherit;
+    padding: 10px;
+}
+
+.icon-outline{
+    width: inherit;
+    border: solid 1px #d4d4d4;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.icon-outline > svg {
+    font-size: 2em;
+}
+
+.icon-outline:hover{
+    border-color: #00adc480;
+}
+
+/* Input */
+.input-text {
+    background-color: #e3e3e3;
+    border: solid 1px #e3e3e3;
+    border-radius: 5px;
+    padding: 12px;
+    width: 100%;
+    font-size: 12px;
+    color: #0000009c;
+    outline: 0;
+}
+
+/* Accordion */
+.app-accordion{
+    border: solid 1px gray;
+    border-radius: 5px;
+}
+
+.accordion .card {
+    border: none;
+}
+.accordion {
+    border: solid 1px #d4d4d4;
+    border-radius: 5px;
+}
+
+.accordion .card-header {
+    background: none;
+}
+
+.accordion .card-header:hover {
+    background: #e3e3e38c;
+    cursor: pointer;
+}
+
+.accordion .toggle-text {
+    color: $primary-btn-bk;
+}
+/* Italic header */
+.italic-header{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.accordion-desc{
+    font-size: 14px;
+}
+
+/* button */
+.app-btn{
+    background: $primary-btn-bk;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: $border-radius;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+}
