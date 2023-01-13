@@ -4,23 +4,9 @@ import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './components/home';
+import WelcomeScreen from './components/home/view/welcome';
 import SocialMediaSharing from './components/home/view/social_media';
-
-const Comp1 = () => {
-  return(
-      <h1>
-          Comp1 
-      </h1>
-  )
-}
-
-const Comp2 = () => {
-  return(
-      <h1>
-          Comp2
-      </h1>
-  )
-}
+import CouponsScreen from './components/home/view/coupons_screen';
 
 const App = () => {
   return (
@@ -29,9 +15,9 @@ const App = () => {
         <Router>
           <Routes>  
             <Route path='/' element={<Home />}>
-              <Route path="/" element={<Comp1 />}></Route>
+              <Route path="/" element={<WelcomeScreen />}></Route>
               <Route path="/social" element={<SocialMediaSharing />}></Route>
-              <Route path='/comp2' element={<Comp2 />}></Route>
+              <Route path="/coupons" element={<CouponsScreen />}></Route>
             </Route>
           </Routes>
         </Router>

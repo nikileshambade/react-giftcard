@@ -4,11 +4,20 @@ import { AiFillTwitterCircle, AiFillFacebook, AiFillMail, AiOutlineWhatsApp } fr
 import { BsMessenger } from 'react-icons/bs';
 import { Col, Row } from 'react-bootstrap';
 
-const Icons = ({ component }) => {
+const IconMap = {
+    'facebook': <AiFillFacebook color='#3b5998'/>,
+    'twitter': <AiFillTwitterCircle color='#55acee' />,
+    'gmail': <AiFillMail color='#dc4e41' />,
+    'whatsapp': <AiOutlineWhatsApp color='#43d854'/>,
+    'messenger': <BsMessenger color='#006AFF'/>
+};
+
+const Icons = ({ name }) => {
+    const renderIcon = IconMap[name] || IconMap[0];
     return(
         <div className='icon-cnt'>
             <div className='icon-outline'>
-                {component}
+                {renderIcon}
             </div>
         </div>
     )
@@ -16,9 +25,37 @@ const Icons = ({ component }) => {
 
 const GroupIcon = (props) => {
     const columns = props.columns || 2;
+    const rows = props.rows || 2;
+    const icons = props.iconData || ['facebook'];
+
+    let rowArray = [];
+    let columnArray = [];
+    let count = 0;
+    for(let i=0; i < rows; i++)
+    {
+        for(let j=0; j<columns; j++)
+        {
+            const iconName = icons[count];
+            if(iconName) {
+                columnArray.push(
+                    <Col key={i+j}>
+                        <Icons name={iconName} />
+                    </Col>
+                )
+                count = count + 1;
+            }
+        }
+        rowArray.push(
+            <Row key={i}>
+                { columnArray }
+            </Row>
+        )
+        columnArray = [];
+    }
+
     return(
         <div>
-            <Row>
+            {/* <Row>
                 <Col>
                     <Icons component={<AiFillFacebook color='#3b5998'/>} />
                 </Col>
@@ -39,7 +76,8 @@ const GroupIcon = (props) => {
                 <Col>
                     <Icons component={<AiFillMail color='#dc4e41' />} />
                 </Col>
-            </Row>
+            </Row> */}
+            { rowArray }
         </div>
     )
 }

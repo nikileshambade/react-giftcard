@@ -3,7 +3,7 @@ import React from 'react';
 
 const ViewTitle = (props) => {
     return(
-        <p id='view-title'>
+        <p {...props}>
             { props.title || 'Header title' }
         </p>
     )

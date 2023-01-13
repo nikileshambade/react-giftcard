@@ -10,10 +10,10 @@ const Home = () => {
                 <h1>LOGO</h1>
             </Row>
             <Row>
-                <Col>
+                <Col xs={12} md={6}>
                     <Image className='home-img' src='https://www.mindinventory.com/blog/wp-content/uploads/2018/07/reactjs-gained.jpg' />
                 </Col>
-                <Col>
+                <Col xs={12} md={6}>
                     <RightPanel />
                 </Col>
             </Row>

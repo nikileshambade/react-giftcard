@@ -1,8 +1,8 @@
 @import '../../styles/variables';
 
 #view-header{
-    color: #545454;
-    font-size: 24px;
+    color: $view-header-color;
+    font-size: $view-header-font-sz;
     text-transform: uppercase;
     text-shadow: none;
     padding-bottom: 5px;
@@ -10,9 +10,18 @@
     font-weight: 300;
 }
 
-#view-title{
-    color: #545454;
-    font-size: 3em;
+.view-title{
+    color: $view-header-color;
+    font-size: $view-title-font-sz;
+    font-weight: 600;
+    font-family: fangsong;
+    line-height: normal;
+    margin-top: 1em;
+}
+
+.view-secondary-title{
+    color: $view-header-color;
+    font-size: $view-secondary-title-font-sz;
     font-weight: 600;
     font-family: fangsong;
     line-height: normal;
@@ -40,33 +49,41 @@
 }
 
 .icon-outline:hover{
-    border-color: #00adc480;
+    border-color: $hover-border-color;
 }
 
 /* Input */
 .input-text {
-    background-color: #e3e3e3;
-    border: solid 1px #e3e3e3;
+    background-color: $input-bk-color;
+    border: solid 1px $input-bk-color;
     border-radius: 5px;
     padding: 12px;
     width: 100%;
-    font-size: 12px;
+    font-size: $view-discription-font-sz;
+    text-transform: uppercase;
     color: #0000009c;
     outline: 0;
+    margin-bottom: 1em;
 }
 
 /* Accordion */
-.app-accordion{
-    border: solid 1px gray;
-    border-radius: 5px;
-}
-
 .accordion .card {
     border: none;
 }
+
+.accordion .card-body {
+    border-bottom: solid 1px $hover-border-color;
+    border-radius: $border-radius;
+}
+
 .accordion {
-    border: solid 1px #d4d4d4;
+    border: solid 1px $hover-border-color;
     border-radius: 5px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    max-height: 16em;
+    overflow: scroll;
+    scrollbar-width: thin !important;
 }
 
 .accordion .card-header {
@@ -76,19 +93,27 @@
 .accordion .card-header:hover {
     background: #e3e3e38c;
     cursor: pointer;
+    border: none;
 }
 
 .accordion .toggle-text {
     color: $primary-btn-bk;
+    font-size: $view-toggle-text-font-sz;
+    font-weight: 600;
 }
+
+hr {
+    color: $horizontal-rule-color;
+}
+
 /* Italic header */
 .italic-header{
-    font-size: 20px;
+    font-size: $view-discription-font-sz;
     font-weight: 600;
 }
 
 .accordion-desc{
-    font-size: 14px;
+    font-size: $view-discription-font-sz;
 }
 
 /* button */
