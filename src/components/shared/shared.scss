@@ -76,6 +76,10 @@
     border-radius: $border-radius;
 }
 
+.accordion .card-body .content{
+    font-size: $view-content-text-font-sz;
+}
+
 .accordion {
     border: solid 1px $hover-border-color;
     border-radius: 5px;
