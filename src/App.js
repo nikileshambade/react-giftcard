@@ -10,6 +10,8 @@ import WelcomeScreen from './components/home/view/welcome';
 import SocialMediaSharing from './components/home/view/social_media';
 import CouponsScreen from './components/home/view/coupons_screen';
 import rootReducer from './state/reducer';
+import Header from './components/header';
+import Footer from './components/footer';
 
 const store = configureStore({ reducer: rootReducer });
 
@@ -18,6 +20,7 @@ const App = () => {
     <Provider store={store}>
       <Container fluid>
         <Router>
+          <Header></Header>
           <Routes>  
             <Route path='/' element={<Home />}>
               <Route path="/" element={<WelcomeScreen />}></Route>
@@ -25,6 +28,7 @@ const App = () => {
               <Route path="/coupons" element={<CouponsScreen />}></Route>
             </Route>
           </Routes>
+          <Footer></Footer>
         </Router>
       </Container>
     </Provider>
