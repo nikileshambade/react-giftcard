@@ -14,8 +14,8 @@ const accordionContent = [{
 }];
 
 const ContentFormat = (content) => (
-    content.map(item => (
-        <div className='content'>
+    content.map((item, index) => (
+        <div key={index} className='content'>
             <strong>{item.title}</strong>
             <p>{item.discription}</p>
         </div>

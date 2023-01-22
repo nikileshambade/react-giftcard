@@ -22,7 +22,7 @@ const AppAccordion = (props) => {
     return(
         <Accordion defaultActiveKey="0">
             {data && data.map((item, index) => (
-                <Card>
+                <Card key={index}>
                     <Card.Header>
                         <ItalicHeader title={item.title}></ItalicHeader>
                         <p className='accordion-desc'>{item.discription}</p>

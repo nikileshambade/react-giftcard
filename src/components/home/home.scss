@@ -11,3 +11,9 @@
     padding: 5em;
     background: #f6f6f6;
 }
+
+@media only screen and (max-width: 1000px) {
+    .right-panel{
+        padding: 1em;
+    }
+}
