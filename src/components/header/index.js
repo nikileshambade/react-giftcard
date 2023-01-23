@@ -1,6 +1,6 @@
 import React from 'react';
 import { Nav } from 'react-bootstrap';
-import SideBar from '../sidebar';
+import { Link } from 'react-router-dom';
 
 const headerData = [{
     name: 'Welcome',
@@ -13,17 +13,16 @@ const headerData = [{
     redirect: '/social'
 },{
     name: 'Thanks',
-    redirect: '/'
+    redirect: '/thanks'
 }]
 
-const Header = () => {
+const Header = (props) => {
     return(
-        <header>
-            <SideBar name='Editor' placement='end'></SideBar>
+        <header {...props}>
             <Nav activeKey='/'>
                 {headerData.map(item => 
                     <Nav.Item key={item.name}>
-                        <Nav.Link href={item.redirect}>{item.name}</Nav.Link>
+                        <Nav.Link as={Link} to={item.redirect}>{item.name}</Nav.Link>
                     </Nav.Item>
                 )}
             </Nav>

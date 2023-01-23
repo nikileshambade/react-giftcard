@@ -1,26 +1,12 @@
-import React, { useState } from 'react';
-import Offcanvas from 'react-bootstrap/Offcanvas';
-import { AiFillEdit } from 'react-icons/ai';
+import React from 'react';
 
 import './sidebar.scss';
 
-const SideBar = ({ name, ...props }) => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+const SideBar = (props) => {
 
   return (
     <React.Fragment>
-      <AiFillEdit className='edit-icon' onClick={handleShow}></AiFillEdit>
-      <Offcanvas show={show} onHide={handleClose} {...props}>
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          <h1>You can add your side bar content here</h1>
-        </Offcanvas.Body>
-      </Offcanvas>
+      <h4>Here you can add your side bar content</h4>
     </React.Fragment>
   );
 }
