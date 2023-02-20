@@ -1,30 +1,50 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector, } from 'react-redux';
 
+import '../../shared/shared.scss';
 import ViewHeader from '../../shared/view_header';
 import ViewTitle from '../../shared/view_title';
 import InputText from '../../shared/input_text';
 import AppButton from '../../shared/app_btn';
+import ACTION from '../../../state/actions';
 
 const WelcomeScreen = () => {
-    const emailDispatch = useDispatch();
+    const state = useSelector(state => state.giftCard.widget.initial_json.welcomeScreen.elements);
+    const [selectedElement, setSelectedElement] = useState();
+    const dispatch = useDispatch();
 
-    const handleInputChange = (event) => {
-        emailDispatch({
-            type: 'UPDATE_EMAIL',
-            payload: event.target.value
-        })
+    useEffect(() => {
+        dispatch({
+            type: ACTION.UPDATE_SCREEN_DETAILS,
+            payload: {
+                activeScreen: 'welcomeScreen',
+                activeElement: selectedElement
+            }
+        });
+    }, [selectedElement, dispatch]);
+
+    const contentClicked = elementName => setSelectedElement(elementName);
+
+    const buttonData = () => {
+        return { buttonData: state.welcomeScreenSubmitButton, buttonTextData: state.welcomeScreenSubmitButtonText };
     }
 
-    return(
+    return (
         <React.Fragment>
-            <ViewHeader title='Refer a friend' />
-            <ViewTitle className='view-secondary-title' title='We are launching [XX Product xx] on [xx Date xx].' />
-            <p>Please provide your email below and we'll email you to give you access to a promotion t share with your friends when it's available</p>
-            <InputText placeholder='Your email address' onChange={(e) => handleInputChange(e)} />
-            <AppButton>Submit</AppButton>
+            <ViewHeader title={state.welcomeScreenHeading.text} style={state.welcomeScreenHeading.style}
+                field="welcomeScreenHeading" click={() => contentClicked('welcomeScreenHeading')} />
+            <ViewTitle className='view-secondary-title hover-edit' contentEditable='true'
+                onClick={() => contentClicked('welcomeScreenOfferHeading', 'text')}
+                suppressContentEditableWarning="true" title={state.welcomeScreenOfferHeading.text}
+                style={state.welcomeScreenOfferHeading.style} />
+            <p className="hover-edit" contentEditable='true' onClick={() => contentClicked('welcomeScreenOfferDetails', 'text')}
+                suppressContentEditableWarning="true" style={state.welcomeScreenOfferDetails.style}>
+                {state.welcomeScreenOfferDetails.text}
+            </p>
+            <InputText placeholder={state.welcomeScreenEmail.text} readOnly />
+            <AppButton data={buttonData()} elemClicked={contentClicked}>{state.welcomeScreenSubmitButtonText.text}</AppButton>
         </React.Fragment>
-    )
+    );
 }
 
 export default WelcomeScreen;
