@@ -21,7 +21,7 @@ export const FontSize = ({ fontSize }) => {
     return(
         <div className="font-size-wrapper w-100">
             <div className="mb-1">Font Size</div>
-            <input type='number' value={size} className="w-75 common-text-style" onChange={onFontSizeChange} />
+            <input type='number' value={fntSize} className="w-75 common-text-style" onChange={onFontSizeChange} />
             <hr></hr>
         </div>
     )
