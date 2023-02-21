@@ -10,7 +10,7 @@ import ACTION from '../../../state/actions';
 
 const DetailsScreen = (props) => {
     const state = useSelector(state => state.giftCard.widget.initial_json.detailsScreen.elements);
-    const [selectedElement, setSelectedElement] = useState();
+    const [selectedElement, setSelectedElement] = useState('detailsScreenHeading');
     const dispatch = useDispatch();
 
     useEffect(() => {

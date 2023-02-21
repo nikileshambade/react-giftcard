@@ -53,7 +53,7 @@ const ColorWidget = ({ color, backgroundColor, borderColor }) => {
                     <div className='picker'>
                         <div
                             className='color-picker mt-2'
-                            style={{ backgroundColor: bgColor, border: '1px solid #5db0b9' }}
+                            style={{ backgroundColor: bgColor }}
                             onClick={() => bgColorPickerToggle(true)}
                         />
 
@@ -75,7 +75,7 @@ const ColorWidget = ({ color, backgroundColor, borderColor }) => {
                     <div className='picker'>
                         <div
                             className='color-picker mt-2'
-                            style={{ backgroundColor: brColor, border: '1px solid #5db0b9' }}
+                            style={{ backgroundColor: brColor }}
                             onClick={() => brColorPickerToggle(true)}
                         />
 

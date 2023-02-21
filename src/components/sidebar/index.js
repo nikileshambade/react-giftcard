@@ -22,7 +22,6 @@ const SideBar = (props) => {
                         <div className='publish-widget-button' name="publish">
                             <button type='button'
                                 onClick={() => { }}>Publish widget</button>
-                            {props?.selectedElement?.elementType}
                         </div>
                         <hr></hr>
                         <FontWidget {...elementProps} />

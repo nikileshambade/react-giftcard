@@ -10,7 +10,7 @@ import ACTION from '../../../state/actions';
 
 const WelcomeScreen = () => {
     const state = useSelector(state => state.giftCard.widget.initial_json.welcomeScreen.elements);
-    const [selectedElement, setSelectedElement] = useState();
+    const [selectedElement, setSelectedElement] = useState('welcomeScreenHeading');
     const dispatch = useDispatch();
 
     useEffect(() => {
