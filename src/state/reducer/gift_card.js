@@ -49,6 +49,14 @@ const giftCard = (state = initialState, action) => {
                 ...action.payload
             };
         }
+        case ACTION.LOAD_WIDGET: {
+            return {
+                ...state,
+                widget: {
+                    initial_json: action.payload
+                }
+            };
+        }
         default:
             return state;
     }

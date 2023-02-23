@@ -2,6 +2,7 @@ import './App.scss';
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import Home from './components/home';
 import WelcomeScreen from './components/home/view/welcome';
@@ -12,8 +13,20 @@ import Footer from './components/footer';
 import SideBar from './components/sidebar/index.js';
 import ThanksScreen from './components/home/view/thanks';
 import DetailsScreen from './components/home/view/details';
+import { GQLQuery } from './query/useGQLQuery';
+import { LOAD_WIDGET } from './query';
+import ACTION from './state/actions';
 
 const App = () => {
+  const { data, isLoading, error } = GQLQuery('widget', LOAD_WIDGET);
+  const dispatch = useDispatch()
+  if(isLoading) return <h4>Loading widgets info......</h4>
+  if(data && data.getWidgetInfo) {
+    dispatch({
+      type: ACTION.LOAD_WIDGET,
+      payload: data.getWidgetInfo.initial_json
+    })
+  }
 
   return (
       <Container fluid>

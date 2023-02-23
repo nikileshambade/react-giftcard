@@ -1,13 +1,17 @@
 import React from "react";
 import './sidebar.scss';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import FontWidget from "./font";
 import { ColorWidget } from "./colors";
+import { GQLQuery } from "../../query/useGQLQuery";
+import { UPDATE_WIDGET } from "../../query";
+import { updateWidget } from "../../state/actions";
 
-const SideBar = (props) => {
+const SideBar = () => {
 
     const state = useSelector(state => state.giftCard);
     const activeScreen = state.activeScreen;
+    const dispatch = useDispatch();
 
     if(!activeScreen) return <h4>Loading styles....</h4>
     const activeElement = state.activeElement;
@@ -15,6 +19,10 @@ const SideBar = (props) => {
 
     const elementProps = state.widget.initial_json[activeScreen].elements[activeElement];
     
+    const HandlePublish = () => {
+        dispatch(updateWidget());
+    }
+
     return(
         <>
             <div className="row">
@@ -22,7 +30,7 @@ const SideBar = (props) => {
                     <div id="mySidenav" className="sidenav">
                         <div className='publish-widget-button' name="publish">
                             <button type='button'
-                                onClick={() => { }}>Publish widget</button>
+                                onClick={HandlePublish}>Publish widget</button>
                         </div>
                         <hr></hr>
                         <FontWidget {...elementProps.style} />
