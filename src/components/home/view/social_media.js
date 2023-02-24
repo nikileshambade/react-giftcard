@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import GroupIcon from '../../shared/group_icon';
 import ViewHeader from '../../shared/view_header';
 import ViewTitle from '../../shared/view_title';
 import AppButton from '../../shared/app_btn';
+import { useDispatch, useSelector } from 'react-redux';
+import ACTION from '../../../state/actions';
 
 const iconsToRender = [
     'facebook',
@@ -13,44 +15,36 @@ const iconsToRender = [
 ];
 
 const SocialMediaSharing = (props) => {
-    const screenDetails = { ...props?.dbObject?.socialMediaScreen?.elements };
-    const contentClicked = (elementName, elementType) => {
-        props.elementClicked({ elementName: elementName, elementType: elementType, screen: 'socialMediaScreen' });
-    }
+    const state = useSelector(state => state.giftCard.widget.initial_json.socialMediaScreen.elements);
+    const [selectedElement, setSelectedElement] = useState('socialMediaScreenHeading');
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch({
+            type: ACTION.UPDATE_SCREEN_DETAILS,
+            payload: {
+                activeScreen: 'socialMediaScreen',
+                activeElement: selectedElement
+            }
+        });
+    }, [selectedElement, dispatch]);
+
     const buttonData = () => {
-        return { buttonData: screenDetails.socialMediaShareButton, buttonTextData: screenDetails.socialMediaShareButtonText };
+        return { buttonData: state.socialMediaShareButton, buttonTextData: state.socialMediaShareButtonText };
     }
-    const iconClick = (event, icon) => {
-        const prevSelectedIcon = document.querySelector('.icon-selected');
-        if (prevSelectedIcon) {
-            prevSelectedIcon.classList.remove('icon-selected');
-        }
-        event.target.classList.add('icon-selected');
-        switch (icon) {
-            case 'facebook':
-                screenDetails.socialMediaShareButtonText.text = 'Post on Facebook';
-                break;
-            case 'whatsapp':
-                break;
-            case 'gmail':
-                break;
-            case 'messenger':
-                break;
-            case 'twitter':
-                break;
-        }
-    }
+    
+    const contentClicked = elementName => setSelectedElement(elementName);
 
     return (
         <React.Fragment>
-            <ViewHeader title={screenDetails.socialMediaScreenHeading.text}
-                style={screenDetails.socialMediaScreenHeading.style} field="socialMediaScreenHeading" click={contentClicked} />
+            <ViewHeader title={state.socialMediaScreenHeading.text}
+                style={state.socialMediaScreenHeading.style} click={() => contentClicked('socialMediaScreenHeading')} />
             <ViewTitle contentEditable='true' suppressContentEditableWarning="true" className='view-title hover-edit'
-                title={screenDetails.socialMediaScreenSubHeading.text}
-                style={screenDetails.socialMediaScreenSubHeading.style}
-                onClick={() => contentClicked('socialMediaScreenSubHeading', 'text')} />
-            <GroupIcon iconData={iconsToRender} rows={3} columns={2} iconClicked={iconClick}></GroupIcon>
-            <AppButton data={buttonData()} elemClicked={contentClicked}>{screenDetails.socialMediaShareButtonText.text}</AppButton>
+                title={state.socialMediaScreenSubHeading.text}
+                style={state.socialMediaScreenSubHeading.style}
+                onClick={() => contentClicked('socialMediaScreenSubHeading')} />
+            <GroupIcon iconData={iconsToRender} rows={3} columns={2} iconClicked={() => contentClicked('socialMediaShareButton')}></GroupIcon>
+            <AppButton data={buttonData()} elemClicked={() => contentClicked('socialMediaShareButtonText')}>{state.socialMediaShareButtonText.text}</AppButton>
         </React.Fragment>
     )
 }

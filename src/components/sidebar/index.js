@@ -3,8 +3,6 @@ import './sidebar.scss';
 import { useDispatch, useSelector } from "react-redux";
 import FontWidget from "./font";
 import { ColorWidget } from "./colors";
-import { GQLQuery } from "../../query/useGQLQuery";
-import { UPDATE_WIDGET } from "../../query";
 import { updateWidget } from "../../state/actions";
 
 const SideBar = () => {
@@ -33,7 +31,9 @@ const SideBar = () => {
                                 onClick={HandlePublish}>Publish widget</button>
                         </div>
                         <hr></hr>
-                        <FontWidget {...elementProps.style} />
+                        {elementProps.text &&
+                            <FontWidget {...elementProps.style} />
+                        }
                         <ColorWidget {...elementProps.style} />
                     </div>
                 </div>

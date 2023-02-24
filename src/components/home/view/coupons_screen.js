@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ViewHeader from '../../shared/view_header';
 import ViewTitle from '../../shared/view_title';
 import AppButton from '../../shared/app_btn';
 import AppAccordion from '../../shared/app_accordion';
+import { useDispatch, useSelector } from 'react-redux';
+import ACTION from '../../../state/actions';
 
 const accordionContent = [{
     title: 'You get...',
@@ -41,28 +43,37 @@ const accordionData = [{
     content: ContentFormat(accordionContent)
 }];
 
-const CouponsScreen = (props) => {
-    const screenDetails = props?.dbObject?.couponsScreen?.elements;
-    const buttonData = () => {
-        return { buttonData: screenDetails.couponsScreenShareButton, buttonTextData: screenDetails.couponsScreenShareButtonText };
-    }
-    const contentClicked = (elementName, elementType) => {
-        props.elementClicked({ elementName: elementName, elementType: elementType, screen: 'welcomeScreen' });
-    }
+const CouponsScreen = () => {
+    const state = useSelector(state => state.giftCard.widget.initial_json.couponsScreen.elements);
+    const [selectedElement, setSelectedElement] = useState('couponsScreenHeading');
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch({
+            type: ACTION.UPDATE_SCREEN_DETAILS,
+            payload: {
+                activeScreen: 'couponsScreen',
+                activeElement: selectedElement
+            }
+        });
+    }, [selectedElement, dispatch]);
+
+    const buttonData = () => ({ buttonData: state.couponsScreenShareButton, buttonTextData: state.couponsScreenShareButtonText });
+    const contentClicked = elementName => setSelectedElement(elementName);
 
     return (
         <React.Fragment>
-            <ViewHeader title={screenDetails.couponsScreenHeading.text} field="couponsScreenHeading"
-                style={screenDetails.couponsScreenHeading.style} click={contentClicked} />
+            <ViewHeader title={state.couponsScreenHeading.text} field="couponsScreenHeading"
+                style={state.couponsScreenHeading.style} click={() => contentClicked('couponsScreenHeading')} />
             <ViewTitle className='view-title hover-edit' contentEditable='true' suppressContentEditableWarning="true"
-                title={screenDetails.couponsScreenSubHeading.text} style={screenDetails.couponsScreenSubHeading.style}
-                onClick={() => contentClicked('couponsScreenSubHeading', 'text')} />
+                title={state.couponsScreenSubHeading.text} style={state.couponsScreenSubHeading.style}
+                onClick={() => contentClicked('couponsScreenSubHeading')} />
             <AppAccordion data={accordionData} />
-            <p className='hover-edit' style={screenDetails.couponsScreenOfferDetails.style}
-                onClick={() => contentClicked('couponsScreenOfferDetails', 'text')}
-                contentEditable='true' suppressContentEditableWarning="true">{screenDetails.couponsScreenOfferDetails.text}
+            <p className='hover-edit' style={state.couponsScreenOfferDetails.style}
+                onClick={() => contentClicked('couponsScreenOfferDetails')}
+                contentEditable='true' suppressContentEditableWarning="true">{state.couponsScreenOfferDetails.text}
             </p>
-            <AppButton data={buttonData()} elemClicked={contentClicked}>{screenDetails.couponsScreenShareButtonText.text}</AppButton>
+            <AppButton data={buttonData()} elemClicked={() => contentClicked('couponsScreenShareButtonText')}>{state.couponsScreenShareButtonText.text}</AppButton>
         </React.Fragment>
     )
 }
